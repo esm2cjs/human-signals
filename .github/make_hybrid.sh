@@ -3,11 +3,10 @@
 npx gulp build
 mv build/src build/esm
 mkdir -p build/cjs
-mv index.js esm/index.js
-sed -i "s#from 'human-signals'#from '@esm2cjs/human-signals'" test.js
-mv test.js test.mjs
+sed -i "s#from 'human-signals'#from '@esm2cjs/human-signals'#" test/main.js
+mv test/main.js test/main.mjs
 
-PJSON=$(cat package.json | jq --tab '
+PJSON=$(cat package.json | jq '
 	del(.type)
   | del(.homepage)
 	| .description = .description + ". This is a fork of " + .repository + ", but with CommonJS support."
@@ -37,5 +36,7 @@ npm i -D @alcalzone/esm2cjs
 npm run to-cjs
 npm uninstall -D @alcalzone/esm2cjs
 
-PJSON=$(cat package.json | jq --tab 'del(.scripts["to-cjs"])')
+PJSON=$(cat package.json | jq 'del(.scripts["to-cjs"])')
 echo "$PJSON" > package.json
+
+npm t
