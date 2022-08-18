@@ -5,6 +5,8 @@ mv build/src build/esm
 mkdir -p build/cjs
 sed -i "s#from 'human-signals'#from '@esm2cjs/human-signals'#" test/main.js
 mv test/main.js test/main.mjs
+mv gulpfile.js gulpfile.mjs
+mv ava.config.js ava.config.mjs
 
 PJSON=$(cat package.json | jq '
 	del(.type)
