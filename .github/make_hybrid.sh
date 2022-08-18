@@ -1,7 +1,7 @@
 #!/bin/bash
 
 npx gulp build
-mv build/src build/esm
+mv build/src/ build/esm
 mkdir -p build/cjs
 
 PJSON=$(cat package.json | jq '
@@ -13,18 +13,18 @@ PJSON=$(cat package.json | jq '
 	| .author = { "name": "Dominic Griesel", "email": "d.griesel@gmx.net" }
 	| .publishConfig = { "access": "public" }
 	| .funding = "https://github.com/sponsors/AlCalzone"
-	| .main = "build/cjs/index.js"
-  | .types = "build/esm/index.d.ts"
+	| .main = "build/cjs/main.js"
+  | .types = "build/esm/main.d.ts"
   | .typesVersions = {}
 	| .typesVersions["*"] = {}
-	| .typesVersions["*"]["build/esm/index.d.ts"] = ["build/esm/index.d.ts"]
-	| .typesVersions["*"]["build/cjs/index.d.ts"] = ["build/esm/index.d.ts"]
+	| .typesVersions["*"]["build/esm/main.d.ts"] = ["build/esm/main.d.ts"]
+	| .typesVersions["*"]["build/cjs/main.d.ts"] = ["build/esm/main.d.ts"]
 	| .typesVersions["*"]["*"] = ["build/esm/*"]
-	| .module = "build/esm/index.js"
+	| .module = "build/esm/main.js"
 	| .files = ["build/**/*.{js,d.ts,json}"]
 	| .exports = {}
-	| .exports["."].import = "./build/esm/index.js"
-	| .exports["."].require = "./build/cjs/index.js"
+	| .exports["."].import = "./build/esm/main.js"
+	| .exports["."].require = "./build/cjs/main.js"
 	| .exports["./package.json"] = "./package.json"
 	| .scripts["to-cjs"] = "esm2cjs --in build/esm --out build/cjs -t node12"
 ')
