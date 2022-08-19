@@ -1,4 +1,4 @@
-# @esm2cjs/strip-final-newline
+# @esm2cjs/human-signals
 
 This is a fork of https://github.com/ehmicky/human-signals, but automatically patched to support ESM **and** CommonJS, unlike the original repository.
 
