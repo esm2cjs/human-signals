@@ -1,3 +1,16 @@
+# 4.3.1
+
+## Bug fixes
+
+- Remove source map comment from built package
+  (https://github.com/ehmicky/human-signals/issues/15)
+
+# 4.3.0
+
+## Features
+
+- Improve tree-shaking support
+
 # 4.2.0
 
 ## Features

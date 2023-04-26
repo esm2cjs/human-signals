@@ -1,7 +1,7 @@
 {
   "version": 3,
-  "sources": ["../../src/realtime.js"],
-  "sourcesContent": ["// List of realtime signals with information about them\nexport const getRealtimeSignals = function () {\n  const length = SIGRTMAX - SIGRTMIN + 1\n  return Array.from({ length }, getRealtimeSignal)\n}\n\nconst getRealtimeSignal = function (value, index) {\n  return {\n    name: `SIGRT${index + 1}`,\n    number: SIGRTMIN + index,\n    action: 'terminate',\n    description: 'Application-specific signal (realtime)',\n    standard: 'posix',\n  }\n}\n\nconst SIGRTMIN = 34\nexport const SIGRTMAX = 64\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;AACO,MAAMA,qBAAqB,WAAY;AAC5C,QAAMC,SAASC,WAAWC,WAAW;AACrC,SAAOC,MAAMC,KAAK,EAAEJ,OAAF,GAAYK,iBAAvB;AACR;AAED,MAAMA,oBAAoB,SAAUC,OAAOC,OAAO;AAChD,SAAO;IACLC,MAAO,QAAOD,QAAQ;IACtBE,QAAQP,WAAWK;IACnBG,QAAQ;IACRC,aAAa;IACbC,UAAU;EALL;AAOR;AAED,MAAMV,WAAW;AACV,MAAMD,WAAW;",
-  "names": ["getRealtimeSignals", "length", "SIGRTMAX", "SIGRTMIN", "Array", "from", "getRealtimeSignal", "value", "index", "name", "number", "action", "description", "standard"]
+  "sources": ["../esm/realtime.js"],
+  "sourcesContent": ["\nexport const getRealtimeSignals=()=>{\nconst length=SIGRTMAX-SIGRTMIN+1;\nreturn Array.from({length},getRealtimeSignal);\n};\n\nconst getRealtimeSignal=(value,index)=>({\nname:`SIGRT${index+1}`,\nnumber:SIGRTMIN+index,\naction:\"terminate\",\ndescription:\"Application-specific signal (realtime)\",\nstandard:\"posix\"\n});\n\nconst SIGRTMIN=34;\nexport const SIGRTMAX=64;"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AACO,MAAM,qBAAmB,MAAI;AACpC,QAAM,SAAO,WAAS,WAAS;AAC/B,SAAO,MAAM,KAAK,EAAC,OAAM,GAAE,iBAAiB;AAC5C;AAEA,MAAM,oBAAkB,CAAC,OAAM,WAAS;AAAA,EACxC,MAAK,QAAQ,QAAM;AAAA,EACnB,QAAO,WAAS;AAAA,EAChB,QAAO;AAAA,EACP,aAAY;AAAA,EACZ,UAAS;AACT;AAEA,MAAM,WAAS;AACR,MAAM,WAAS;",
+  "names": []
 }

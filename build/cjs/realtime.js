@@ -22,19 +22,17 @@ __export(realtime_exports, {
   getRealtimeSignals: () => getRealtimeSignals
 });
 module.exports = __toCommonJS(realtime_exports);
-const getRealtimeSignals = function() {
+const getRealtimeSignals = () => {
   const length = SIGRTMAX - SIGRTMIN + 1;
   return Array.from({ length }, getRealtimeSignal);
 };
-const getRealtimeSignal = function(value, index) {
-  return {
-    name: `SIGRT${index + 1}`,
-    number: SIGRTMIN + index,
-    action: "terminate",
-    description: "Application-specific signal (realtime)",
-    standard: "posix"
-  };
-};
+const getRealtimeSignal = (value, index) => ({
+  name: `SIGRT${index + 1}`,
+  number: SIGRTMIN + index,
+  action: "terminate",
+  description: "Application-specific signal (realtime)",
+  standard: "posix"
+});
 const SIGRTMIN = 34;
 const SIGRTMAX = 64;
 // Annotate the CommonJS export names for ESM import in node:

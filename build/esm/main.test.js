@@ -1,4 +1,4 @@
-import{isDeepStrictEqual}from"util";
+import{isDeepStrictEqual}from"node:util";
 
 import Ajv from"ajv";
 import test from"ava";
@@ -7,7 +7,7 @@ import{each}from"test-each";
 
 const ajv=new Ajv({});
 
-const validate=function(value,schema){
+const validate=(value,schema)=>{
 const isValid=ajv.validate(schema,value);
 
 if(isValid){
@@ -29,17 +29,17 @@ description:{type:"string",minLength:1},
 supported:{type:"boolean"},
 action:{
 type:"string",
-enum:["terminate","core","ignore","pause","unpause"]},
-
+enum:["terminate","core","ignore","pause","unpause"]
+},
 forced:{type:"boolean"},
 standard:{
 type:"string",
-enum:["ansi","posix","bsd","systemv","other"]}},
-
-
-additionalProperties:false}};
-
-
+enum:["ansi","posix","bsd","systemv","other"]
+}
+},
+additionalProperties:false
+}
+};
 
 each(
 [
@@ -72,4 +72,3 @@ isDeepStrictEqual(signal,signalsByName[signal.name])));
 
 
 });
-//# sourceMappingURL=main.js.map

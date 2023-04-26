@@ -22,14 +22,14 @@ __export(main_exports, {
   signalsByNumber: () => signalsByNumber
 });
 module.exports = __toCommonJS(main_exports);
-var import_os = require("os");
+var import_node_os = require("node:os");
 var import_realtime = require("./realtime.js");
 var import_signals = require("./signals.js");
-const getSignalsByName = function() {
+const getSignalsByName = () => {
   const signals = (0, import_signals.getSignals)();
   return Object.fromEntries(signals.map(getSignalByName));
 };
-const getSignalByName = function({
+const getSignalByName = ({
   name,
   number,
   description,
@@ -37,20 +37,15 @@ const getSignalByName = function({
   action,
   forced,
   standard
-}) {
-  return [
-    name,
-    { name, number, description, supported, action, forced, standard }
-  ];
-};
+}) => [name, { name, number, description, supported, action, forced, standard }];
 const signalsByName = getSignalsByName();
-const getSignalsByNumber = function() {
+const getSignalsByNumber = () => {
   const signals = (0, import_signals.getSignals)();
   const length = import_realtime.SIGRTMAX + 1;
   const signalsA = Array.from({ length }, (value, number) => getSignalByNumber(number, signals));
   return Object.assign({}, ...signalsA);
 };
-const getSignalByNumber = function(number, signals) {
+const getSignalByNumber = (number, signals) => {
   const signal = findSignalByNumber(number, signals);
   if (signal === void 0) {
     return {};
@@ -68,8 +63,8 @@ const getSignalByNumber = function(number, signals) {
     }
   };
 };
-const findSignalByNumber = function(number, signals) {
-  const signal = signals.find(({ name }) => import_os.constants.signals[name] === number);
+const findSignalByNumber = (number, signals) => {
+  const signal = signals.find(({ name }) => import_node_os.constants.signals[name] === number);
   if (signal !== void 0) {
     return signal;
   }

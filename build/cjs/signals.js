@@ -21,25 +21,25 @@ __export(signals_exports, {
   getSignals: () => getSignals
 });
 module.exports = __toCommonJS(signals_exports);
-var import_os = require("os");
+var import_node_os = require("node:os");
 var import_core = require("./core.js");
 var import_realtime = require("./realtime.js");
-const getSignals = function() {
+const getSignals = () => {
   const realtimeSignals = (0, import_realtime.getRealtimeSignals)();
   const signals = [...import_core.SIGNALS, ...realtimeSignals].map(normalizeSignal);
   return signals;
 };
-const normalizeSignal = function({
+const normalizeSignal = ({
   name,
   number: defaultNumber,
   description,
   action,
   forced = false,
   standard
-}) {
+}) => {
   const {
     signals: { [name]: constantSignal }
-  } = import_os.constants;
+  } = import_node_os.constants;
   const supported = constantSignal !== void 0;
   const number = supported ? constantSignal : defaultNumber;
   return { name, number, description, supported, action, forced, standard };
