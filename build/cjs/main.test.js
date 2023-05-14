@@ -76,7 +76,9 @@ const JSON_SCHEMA = {
 });
 (0, import_ava.default)("Same signals", (t) => {
   t.true(
-    Object.values(import_human_signals.signalsByNumber).every((signal) => (0, import_node_util.isDeepStrictEqual)(signal, import_human_signals.signalsByName[signal.name]))
+    Object.values(import_human_signals.signalsByNumber).every(
+      (signal) => (0, import_node_util.isDeepStrictEqual)(signal, import_human_signals.signalsByName[signal.name])
+    )
   );
 });
 //# sourceMappingURL=main.test.js.map

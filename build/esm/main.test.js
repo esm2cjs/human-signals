@@ -11,10 +11,10 @@ const validate=(value,schema)=>{
 const isValid=ajv.validate(schema,value);
 
 if(isValid){
-return true;
+return true
 }
 
-return ajv.errorsText(ajv.errors,{separator:"\n"});
+return ajv.errorsText(ajv.errors,{separator:"\n"})
 };
 
 const JSON_SCHEMA={
@@ -48,27 +48,27 @@ each(
 
 ({title},{signals})=>{
 test(`Shape | ${title}`,(t)=>{
-t.is(validate(signals,JSON_SCHEMA),true);
-});
-});
-
+t.is(validate(signals,JSON_SCHEMA),true)
+})
+}
+);
 
 test("Object keys | signalsByName",(t)=>{
-t.true(Object.entries(signalsByName).every(([key,{name}])=>key===name));
+t.true(Object.entries(signalsByName).every(([key,{name}])=>key===name))
 });
 
 test("Object keys | signalsByNumber",(t)=>{
 t.true(
 Object.entries(signalsByNumber).every(
-([key,{number}])=>key===String(number)));
-
-
+([key,{number}])=>key===String(number)
+)
+)
 });
 
 test("Same signals",(t)=>{
 t.true(
 Object.values(signalsByNumber).every((signal)=>
-isDeepStrictEqual(signal,signalsByName[signal.name])));
-
-
+isDeepStrictEqual(signal,signalsByName[signal.name])
+)
+)
 });

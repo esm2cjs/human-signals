@@ -42,7 +42,10 @@ const signalsByName = getSignalsByName();
 const getSignalsByNumber = () => {
   const signals = (0, import_signals.getSignals)();
   const length = import_realtime.SIGRTMAX + 1;
-  const signalsA = Array.from({ length }, (value, number) => getSignalByNumber(number, signals));
+  const signalsA = Array.from(
+    { length },
+    (value, number) => getSignalByNumber(number, signals)
+  );
   return Object.assign({}, ...signalsA);
 };
 const getSignalByNumber = (number, signals) => {
